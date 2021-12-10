@@ -1,21 +1,3 @@
-<div class="container mt-100">
-     <div class="row">
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
 
-         <div *ngFor="let equipment of equipments" class="col-md-4 col-sm-6">
-          <div class="card mb-30">
-              <a class="card-img-tiles" data-abc="true">
-                  <div class="inner">
-                      <div class="main-img"><img src="{{equipment?.imageUrl}}" alt="Picture"></div>
-                  </div>
-              </a>
-              <div class="card-body text-center">
-                  <h4 class="card-title">{{equipment?.name}}</h4>
-                  <p class="text-muted">Price: {{equipment?.cost}}$</p> 
-                  <a class="btn btn-outline-primary btn-sm" href="#" data-abc="true">Buy Product</a>
-              </div>
-          </div>
-      </div>
-  
-         
-     </div>
- </div>

@@ -1,0 +1,28 @@
+.login {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url("../../assets/login.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.login-heading {
+  text-align: center;
+  font-weight: 800;
+  color: white;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.7rem 12.4rem;
+}
+
+.text-center {
+  color: rgb(201, 201, 201);
+}
+.form-floating {
+  color: rgb(201, 201, 201);
+}
