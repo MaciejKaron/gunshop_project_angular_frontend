@@ -1,9 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { User } from '../user';
-import { RegistrationService } from '../user.service';
-
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,36 +7,33 @@ import { RegistrationService } from '../user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  form: any = {
+    username: null,
+    email: null,
+    password: null
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
-  public users: User[] | undefined;
+  constructor(private authService: AuthService) { }
 
-  constructor(private registrationService : RegistrationService) {}
-   
-
-  ngOnInit(){
-    
+  ngOnInit(): void {
   }
 
-  public addUser(addForm: NgForm): void {
-    this.registrationService.addUser(addForm.value).subscribe(
-      (response: User) => {
-        console.log(response);
+  onSubmit(): void {
+    const { username, email, password } = this.form;
+
+    this.authService.register(username, email, password).subscribe({
+      next: data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
       },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
       }
-    );
+    });
   }
-
-  public getUser(): void {
-    this.registrationService.getUser().subscribe(
-      (response: User[]) => {
-        this.users = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
 }

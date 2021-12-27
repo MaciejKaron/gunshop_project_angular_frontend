@@ -11,19 +11,19 @@ export class EquipmentService {
   constructor(private http: HttpClient) { }
 
   public getEquipment(): Observable<Equipment[]> {
-    return this.http.get<Equipment[]>(`${this.apiServerUrl}/equipment/all`);
+    return this.http.get<Equipment[]>(`${this.apiServerUrl}/api/equipment/all`);
   }
 
   public addEquipment(equipment : Equipment): Observable<Equipment> {
-    return this.http.post<Equipment>(`${this.apiServerUrl}/equipment/add`, equipment);
+    return this.http.post<Equipment>(`${this.apiServerUrl}/api/equipment/add`, equipment);
   }
 
   public updateEquipment(equipment : Equipment): Observable<Equipment> {
-    return this.http.put<Equipment>(`${this.apiServerUrl}/equipment/update`, equipment);
+    return this.http.put<Equipment>(`${this.apiServerUrl}/api/equipment/update`, equipment);
   }
 
   public deleteEquipment(id : number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/equipment/delete/${id}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/api/equipment/delete/${id}`);
   }
 
 

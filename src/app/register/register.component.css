@@ -26,3 +26,11 @@
 .form-floating {
   color: rgb(201, 201, 201);
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.form-group {
+  color: rgb(201, 201, 201);
+}
