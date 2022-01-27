@@ -22,7 +22,7 @@ export class EquipmentService {
     return this.http.put<Equipment>(`${this.apiServerUrl}/api/equipment/update`, equipment);
   }
 
-  public deleteEquipment(id : number): Observable<void> {
+  public deleteEquipment(id : number | undefined): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/api/equipment/delete/${id}`);
   }
 

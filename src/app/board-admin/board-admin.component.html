@@ -1,5 +1,28 @@
 <div class="container">
-    <header class="jumbotron">
-      <p>{{ content }}</p>
-    </header>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">username</th>
+        <th scope="col">email</th>
+        <th scope="col">role</th>
+        <th scope="col">edit</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users">
+      <tr>
+        <th scope="row">{{user?.id}}</th>
+        <td>{{user?.username}}</td>
+        <td>{{user?.email}}</td>
+        <td >{{user?.roles}}
+           <!-- <li *ngFor="let role of roles; index as id; trackBy: identify">{{user?.roles}}</li>  -->
+        </td>
+        <td> 
+          <button  type="button" class="btn btn-default btn-lg">U</button>  
+          <button  type="button" class="btn btn-default btn-lg">M</button>
+          <button  type="button" class="btn btn-default btn-lg">A</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   </div>

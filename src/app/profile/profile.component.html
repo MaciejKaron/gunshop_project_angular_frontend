@@ -1,8 +1,17 @@
 <div class="container" *ngIf="currentUser; else loggedOut">
+<br>
+  <h3>
+    <strong>{{ currentUser.username }}</strong> Profile
+  </h3>
+
+  <br>
+  <img src="assets/unknown.png" alt="Avatar" class="avatar">
+
+  <br>
+
+
     <br>
-      <h3>
-        <strong>{{ currentUser.username }}</strong> Profile
-      </h3>
+      
     <br>
     <p>
       <strong>Token:</strong>

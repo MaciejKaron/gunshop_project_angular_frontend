@@ -13,18 +13,18 @@ export class RegistrationService{
     constructor(private http: HttpClient) { }
     
     public getUser(): Observable<User[]>{
-        return this.http.get<User[]>(`${this.apiServerUrl}/register/all`);
+        return this.http.get<User[]>(`${this.apiServerUrl}/api/user/all`);
     }
 
     public addUser(user: User): Observable<User>{
-        return this.http.post<User>(`${this.apiServerUrl}/register/add`, user);
+        return this.http.post<User>(`${this.apiServerUrl}/api/user/add`, user);
     }
 
     public updateUser(user: User): Observable<User>{
-        return this.http.post<User>(`${this.apiServerUrl}/register/update`, user);
+        return this.http.post<User>(`${this.apiServerUrl}/api/user/update`, user);
     }
 
     public deleteUser(id: number): Observable<void>{
-        return this.http.delete<void>(`${this.apiServerUrl}/register/delete/${id}`);
+        return this.http.delete<void>(`${this.apiServerUrl}/api/user/delete/${id}`);
     }
 }

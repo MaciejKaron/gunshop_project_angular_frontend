@@ -1,20 +1,22 @@
 <header>
-  <div class="container">
+  
     <h1 class="logo">GUNGAME</h1>
     <h1 class="logoImg"><img src="assets/hs.png" alt="logo" /></h1>
+
+  
 
     <nav>
       <ul routerLinkActive="active">
         <li><a href="/home" routerLink="home">Home</a></li>
-        <li><a href="/user" *ngIf="isLoggedIn" routerLink="user" >User</a></li>
-        <li><a href="/mod" *ngIf="showModeratorBoard" routerLink="mod" >Mod</a></li>
-        <li><a href="/admin" *ngIf="showAdminBoard" routerLink="admin" >Admin</a></li>
+        <li><a href="/user" *ngIf="isLoggedIn && !showAdminBoard && !showModeratorBoard" routerLink="user" >My wishes</a></li>
+        <li><a href="/mod" *ngIf="showModeratorBoard" routerLink="mod" >Mod Panel</a></li>
+        <li><a href="/admin" *ngIf="showAdminBoard" routerLink="admin" >Admin Panel</a></li>
         <li><a href="/register" *ngIf="!isLoggedIn" routerLink="register" >Sign up</a></li>
         <li><a href="/login" *ngIf="!isLoggedIn" routerLink="login" >Login</a></li>
         <li><a href="/profile" *ngIf="isLoggedIn" routerLink="profile">{{ username }}</a></li>
-        <li><a href *ngIf="isLoggedIn" class="nav-link" (click)="logout()">LogOut</a></li>
+        <li><a href *ngIf="isLoggedIn"  (click)="logout()">LogOut</a></li>
       </ul>
     </nav>
-  </div>
+  
 </header>
 

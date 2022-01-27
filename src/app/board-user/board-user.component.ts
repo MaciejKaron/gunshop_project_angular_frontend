@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Equipment } from '../equipment';
+import { EquipmentService } from '../equipment.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -7,18 +10,14 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./board-user.component.css']
 })
 export class BoardUserComponent implements OnInit {
-  content?: string;
+  public equipments!: Equipment[] 
 
-  constructor(private userService: UserService) { }
+  totalLength: any;
+  page: number = 1;
+
+  constructor(private userService: UserService, private equipmentService: EquipmentService, private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.userService.getUserBoard().subscribe({
-      next: data => {
-        this.content = data;
-      },
-      error: err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    });
+   
   }
 }

@@ -5,5 +5,5 @@ export interface Equipment {
     type_equipment: string;
     production_date: number;
     imageUrl: string;
-    descripion: string;
+    description: string;
 }
