@@ -1,8 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Cwishes } from '../Cwishes';
 import { Equipment } from '../equipment';
 import { EquipmentService } from '../equipment.service';
+import { User } from '../user';
+import { Wishes } from '../wishes';
+import { WishesService } from '../wishes.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 
 
@@ -17,9 +21,12 @@ export class HomeComponent implements OnInit {
   page: number = 1;
 
   public equipments!: Equipment[] 
+  public users!: User[]
   public editEquipment: Equipment | undefined;
   public delEquipment: Equipment | undefined;
-  public wishEquipment: Equipment | undefined 
+  public wishEquipment: Equipment | undefined;
+  
+  public wishes!: Wishes[] 
 
   private roles: string[] = [];
   isLoggedIn = false;
@@ -28,13 +35,17 @@ export class HomeComponent implements OnInit {
   username?: string;
 
   itemAfterWish: any;
+  itemAfterWishv2: any;
   itemAfWi: boolean = false;
 
-  constructor(private equipmentService: EquipmentService, private tokenStorageService: TokenStorageService) { }
+  currentUser: any;
+
+  constructor(private equipmentService: EquipmentService, private tokenStorageService: TokenStorageService, private wishesService: WishesService, private token: TokenStorageService) { }
 
   ngOnInit(): void {
     this.getEquipments();
     this.access();
+    this.currentUser = this.token.getUser();
   }
 
   public  getEquipments(): void {
@@ -52,6 +63,7 @@ export class HomeComponent implements OnInit {
   updateWish(id: number) {
     this.itemAfWi = true;
     this.itemAfterWish = id;
+    this.itemAfterWishv2 = id;
   }
 
 
@@ -134,6 +146,80 @@ export class HomeComponent implements OnInit {
 
       this.username = user.username;
     }
+  }
+
+  // abc = {
+  //   user: {
+  //     id: 11
+  //   },
+  //   equipment: {
+  //     id: 8
+  //   }
+  // }
+
+
+  public addWishes(user : number, equipment : number | undefined): void{
+    
+    let abc = {
+      user: {
+        id: user
+      },
+      equipment: {
+        id: equipment
+      }
+    } 
+    
+    
+    
+    this.wishesService.addWishes(abc).subscribe(
+      (response: Object) => {
+        console.log(response);
+       },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  // public addWishes(abc: Object): void{
+  //   this.wishesService.addWishes(abc).subscribe(
+  //     (response: Object) => {
+  //       console.log(response);
+  //      },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   );
+  // }
+
+
+  public getWishess(): void {
+    this.currentUser = this.token.getUser();
+    this.wishesService.getAllMyWishes(this.currentUser.id).subscribe(
+      (response: Wishes[]) => {
+        this.wishes = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public onAddWishes(addWishForm: NgForm): void{
+    document.getElementById('add-form-closev2')?.click();
+    this.wishesService.addWishes(addWishForm.value).subscribe(
+      (response: Object) => {
+        console.log(response);
+       },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public test(): void{
+    this.currentUser = this.token.getUser();
+    console.log(this.currentUser.id);
   }
 
 

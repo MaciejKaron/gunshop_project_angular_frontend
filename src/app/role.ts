@@ -1,4 +1,8 @@
+import { ERole } from "./erole";
+
 export interface Role{
-    id: number;
-    name: string;
+    id: number,
+    name: ERole
 }
+
+

@@ -14,6 +14,10 @@ export class EquipmentService {
     return this.http.get<Equipment[]>(`${this.apiServerUrl}/api/equipment/all`);
   }
 
+  public getMyEquipment(id : number | undefined): Observable<Equipment> {
+    return this.http.get<Equipment>(`${this.apiServerUrl}/api/equipment/${id}`);
+  }
+
   public addEquipment(equipment : Equipment): Observable<Equipment> {
     return this.http.post<Equipment>(`${this.apiServerUrl}/api/equipment/add`, equipment);
   }

@@ -1,5 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ERole } from '../erole';
+import { Role } from '../role';
 import { User } from '../user';
 import { UserService } from '../_services/user.service';
 
@@ -11,11 +13,9 @@ import { UserService } from '../_services/user.service';
 export class BoardAdminComponent implements OnInit {
 
   public users!: User[]
-  public roles!: any[] | undefined;
+  public roles!: Role[]
+  public eroles!: ERole[]
 
-  identify(index: any,item: { name: any; }) {
-    return item.name;
-}
 
   constructor(private userService: UserService) { }
 

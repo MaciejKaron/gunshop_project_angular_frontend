@@ -50,7 +50,15 @@ h5 {
   color: white;
 }
 
-.afterWish {
-  color: rgb(255, 255, 255);
-  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+.afterWish.row.p-2.bg-white.border.rounded {
+  color: rgb(0, 0, 0);
+  border: 4px !important;
+  border-color: rgb(100, 100, 100) !important;
+  border-style: solid !important;
+}
+
+.afterWishv2.btn-outline-primary {
+  background-color: rgb(100, 100, 100);
+  color: #ffffff;
+  border-color: rgb(0, 0, 0);
 }

@@ -17,6 +17,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { WishesService } from './wishes.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  providers: [EquipmentService,RegistrationService,authInterceptorProviders],
+  providers: [EquipmentService,RegistrationService,authInterceptorProviders,WishesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

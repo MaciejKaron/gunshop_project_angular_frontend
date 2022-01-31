@@ -1,28 +1,33 @@
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <div class="container">
   <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
             
             
-            <div *ngFor="let equipment of equipments | paginate: { itemsPerPage: 5, currentPage: page, totalItems:totalLength}" class="row p-2 bg-white border rounded">
-                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{equipment?.imageUrl}}"></div>
+            <div *ngFor="let wish of wishes | paginate: { itemsPerPage: 5, currentPage: page, totalItems:totalLength}" class="row p-2 bg-white border rounded">
+                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{wish.equipment.imageUrl}}"></div>
                 <div class="col-md-6 mt-1">
-                    <h4 class="card-title">{{equipment?.name}}</h4>
+                    <h4 class="card-title">{{wish.equipment.name}}</h4>
                     <h5 class="d-flex flex-row">
-                        {{equipment?.type_equipment}}
+                        {{wish.equipment.type_equipment}}
                     </h5>
-                    <h6 class="mt-1 mb-1 spec-1">{{equipment?.description}}</h6>
+                    <h6 class="mt-1 mb-1 spec-1">{{wish.equipment.description}}</h6>
                     
-                    <h5 class="text-justify text-truncate para mb-0"><br><br>Production date: {{equipment?.production_date}}</h5>
+                    <h5 class="text-justify text-truncate para mb-0"><br><br>Production date:{{wish.equipment.production_date}} </h5>
                 </div>
                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
                     <h6 class="text-success">Price: </h6>
                     <div class="d-flex flex-row align-items-center">
-                        <h4 class="mr-1">{{equipment?.cost}}$</h4>
+                        <h4 class="mr-1">{{wish.equipment.cost}}$</h4>
                     </div>
                     
                     <br>
-                  
+                    <div class="buttons">
+                        <div class="tools"> 
+                        <button (click)="deleteWish(wish?.id)" type="button" class="btn btn-default btn-lg"><i class="icon-trash"></i></button>
+                    </div>
+                    </div>
                 </div>
             </div>
              
@@ -31,3 +36,6 @@
     </div>
 </div>
   </div>
+
+
+

@@ -11,7 +11,6 @@
     <div class="info-txt">
       <h3 *ngIf="!isLoggedIn">Zaloguj się aby dodać ekwipunek</h3>
     </div>
-
 </form>
 
 
@@ -21,10 +20,10 @@
         <div class="col-md-10">
             
             
-            <div *ngFor="let equipment of equipments | paginate: { itemsPerPage: 5, currentPage: page, totalItems:totalLength}"  class="row p-2 bg-white border rounded">
+            <div *ngFor="let equipment of equipments | paginate: { itemsPerPage: 5, currentPage: page, totalItems:totalLength}" [ngClass]="{afterWish: itemAfterWish == equipment.id}"  (click)="updateWish(equipment.id)"  class="row p-2 bg-white border rounded">
                 <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{equipment?.imageUrl}}"></div>
                 <div class="col-md-6 mt-1">
-                    <h4 class="card-title">{{equipment?.name}}</h4>
+                    <h4 class="card-title">{{equipment?.name}} </h4>
                     <h5 class="d-flex flex-row">
                         {{equipment?.type_equipment}}
                     </h5>
@@ -40,7 +39,7 @@
                     
                     <br>
                     <div class="buttons">
-                        <button *ngIf="isLoggedIn" [ngClass]="{afterWish: itemAfterWish == equipment.id}" (click)="updateWish(equipment.id)" type="button"  class="btn btn-outline-primary btn-sm mt-2" >Add to wishes</button>
+                        <button *ngIf="isLoggedIn" (click)="onOpenModal(equipment, 'wish')" [ngClass]="{afterWishv2: itemAfterWishv2 == equipment.id}" type="button"  class="btn btn-outline-primary btn-sm mt-2" data-toggle="modal" data-target="#addWishModal">Add to wishes</button>
                         <div class="tools">
                         <button *ngIf="showAdminBoard" (click)="onOpenModal(equipment, 'edit')"  type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#editEqModal"><i class="icon-edit"></i></button>  
                         <button *ngIf="showAdminBoard" (click)="onOpenModal(equipment, 'delete')"  type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#deleteEqModal"><i class="icon-trash"></i></button>
@@ -198,6 +197,41 @@
         <button   type="button"  class="btn btn-primary" data-dismiss="modal">Yes</button>
         <button   type="button"  class="btn btn-primary" data-dismiss="modal">Undo</button>
       </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal ADD WISHES-->
+<div class="modal fade" id="addWishModal" tabindex="-1" role="dialog" aria-labelledby="addWishModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addWishModalLabel">Add Wish</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            <form>
+              <div class="form-group">
+                 <label for="name">Do you want to add to your wishes? {{currentUser.id}}</label>
+                 <input type="hidden" ngModel="{{currentUser.id}}" name="User" class="form-control" id="user"  required>
+              </div>
+              <div class="form-group">
+                 <label for="email">{{wishEquipment?.id}}</label>
+                 <input type="hidden" ngModel="{{wishEquipment?.id}}" name="Equipment" class="form-control" id="cost"  required>
+                 </div>
+    
+              <div class="modal-footer">
+                  <button type="button" id="add-form-closev2" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button type="button" (click)="addWishes(currentUser.id, wishEquipment?.id)" class="btn btn-primary">Yes</button>
+                </div>
+              </form>
+       </div>
+  
     </div>
   </div>
 </div>
