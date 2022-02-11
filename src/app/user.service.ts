@@ -24,7 +24,7 @@ export class RegistrationService{
         return this.http.post<User>(`${this.apiServerUrl}/api/user/update`, user);
     }
 
-    public deleteUser(id: number): Observable<void>{
+    public deleteUser(id: number | undefined): Observable<void>{
         return this.http.delete<void>(`${this.apiServerUrl}/api/user/delete/${id}`);
     }
 }

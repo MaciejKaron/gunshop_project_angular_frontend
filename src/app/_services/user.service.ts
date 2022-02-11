@@ -29,20 +29,28 @@ export class UserService {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
 
-  public getUser(): Observable<User[]>{
+  public getUser(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiServerUrl}/api/user/all`);
-}
+  }
 
-public addUser(user: User): Observable<User>{
+  public addUser(user: User): Observable<User> {
     return this.http.post<User>(`${this.apiServerUrl}/api/user/add`, user);
-}
+  }
 
-public updateUser(user: User): Observable<User>{
-    return this.http.post<User>(`${this.apiServerUrl}/api/user/update`, user);
-}
+  public updateUser(user: User): Observable<User> {
+    return this.http.put<User>(`${this.apiServerUrl}/api/user/update`, user);
+  }
 
-public deleteUser(id: number): Observable<void>{
+  public deleteUser(id: number | undefined): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/api/user/delete/${id}`);
-}
+  }
+  
+  public updUser(user: User, id: number | undefined) {
+    return this.http.post(`${this.apiServerUrl}/api/user/upd/${id}`, user);
+  }
+  
+  public getUserById(id: number | undefined) {
+    return this.http.get(`${this.apiServerUrl}/api/user/${id}`);
+  }
 
 }

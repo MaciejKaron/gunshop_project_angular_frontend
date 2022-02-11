@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Cwishes } from '../Cwishes';
 import { Equipment } from '../equipment';
 import { EquipmentService } from '../equipment.service';
 import { User } from '../user';
@@ -224,3 +223,9 @@ export class HomeComponent implements OnInit {
 
 
 }
+
+
+
+
+
+
